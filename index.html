@@ -1,54 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Tic Tac Toe</title>
     <style>
-        .container{
+        .container {
             width: 100%;
-            height: 90vh;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
         }
 
-        .board{
+        #board {
             border-radius: 10px;
-            width: 600px;
-            height: 600px;
+            width: 300px;
+            height: 300px;
         }
 
-        .grid{
+        #grid {
             display: grid;
-            grid-template-columns: repeat(3, 200px);
+            grid-template-columns: repeat(3, 100px);
         }
 
-        .box{
+        .box {
             border: black 2.5px solid;
             border-radius: 15px;
-            height:200px;
+            height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14vw;
+            font-size: 5em;
         }
 
-        .box:hover{
+        .box:hover {
             cursor: pointer;
             opacity: 50%;
             background-color: cadetblue;
         }
+
+        .resetBtn {
+            background-color: red;
+            border-radius: 5px;
+            padding: 0.5em 1.5em;
+            color: white;
+            border: none;
+            font-size: 1em;
+            margin-top: 3em;
+        }
+
+        .resetBtn:hover {
+            opacity: 50%;
+            cursor: pointer;
+        }
+
+        #messageContainer {
+            text-align: center;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Tic Tac Toe</h1>
-        <h3>Current Player: <p id="currentPlayer"></p></h3>
-        <div class="board">
-            <div class="grid">
+        <h3 id="winnerContainer">Winner: </h3>
+        <h3 id="messageContainer">Current Player: <p id="currentPlayer"></p>
+        </h3>
+
+        <div id="board">
+            <div id="grid">
                 <div class="box" id="1"></div>
                 <div class="box" id="2"></div>
                 <div class="box" id="3"></div>
@@ -60,7 +83,9 @@
                 <div class="box" id="9"></div>
             </div>
         </div>
+        <button id="reset" class="resetBtn">Reset</button>
     </div>
     <script src="./dist/bundle.js"></script>
 </body>
+
 </html>

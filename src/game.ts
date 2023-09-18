@@ -1,35 +1,17 @@
-// add webpack to compile all ts files
+import { Board, Player } from "./classes";
 
-import { Controller, Board, Player } from "./classes";
+const player = new Player("X", "Zach", "red");
+const enemy = new Player("O", "AI", "blue");
+const controller: Board = new Board(player, enemy);
 
-const player = new Player("x", "Zach", "red");
+const gridElem: HTMLElement | null = document.getElementById("grid");
+const resetBtnElem: HTMLElement | null = document.getElementById("reset");
 
-const enemy = new Player("o", "AI", "blue");
-
-const controller = new Controller(player, enemy);
-
-player.placePiece("1");
-
-enemy.placePiece("2");
-
-const currentPlayer: HTMLElement | null = document.getElementById("currentPlayer");
-if(currentPlayer){
-    currentPlayer.innerHTML = `${controller.currentPlayerName} - ${controller.currentPlayerSymbol}`;
-}    
-
-
-document.addEventListener("click", (event: MouseEvent) => {
-    
-    gameLoop(event);
-    
-})
-
-function gameLoop(event: any){
+gridElem?.addEventListener("click", (event: MouseEvent) => {
     const docId = (event.target as HTMLElement)?.id;
-    controller.currentPlayer.placePiece(docId);
-    controller.switchPlayer();
-    if(currentPlayer){
-        currentPlayer.innerHTML = `${controller.currentPlayerName} - ${controller.currentPlayerSymbol}`;
+    if (controller.isPlaying) {
+        controller.placePiece(docId);
     }
-}
+});
 
+resetBtnElem?.addEventListener("click", () => controller.resetBoard());
